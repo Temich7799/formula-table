@@ -1,12 +1,12 @@
 import { TextField } from '@mui/material';
 import { ChangeEvent } from 'react';
 
-interface CellProps {
-  value: string | number;
-  onChange: (newValue: string | number) => void;
+interface FormulaCellProps {
+  value: string;
+  onChange: (newValue: string) => void;
 }
 
-const Cell = ({ value, onChange }: CellProps) => {
+const FormulaCell = ({ value, onChange }: FormulaCellProps) => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     onChange(event.target.value);
   };
@@ -14,13 +14,12 @@ const Cell = ({ value, onChange }: CellProps) => {
   return (
     <TextField
       fullWidth
-      className="cell-input"
       size="small"
-      value={value}
+      value={value || ''}
       variant="outlined"
       onChange={handleChange}
     />
   );
 };
 
-export default Cell;
+export default FormulaCell;
