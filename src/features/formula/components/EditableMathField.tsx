@@ -1,4 +1,3 @@
-import React from 'react';
 import { EditableMathField as ReactMathQuillField } from 'react-mathquill';
 import { Box, styled } from '@mui/material';
 

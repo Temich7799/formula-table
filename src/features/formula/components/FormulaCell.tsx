@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { TextField, Autocomplete, Chip, useTheme } from '@mui/material';
-import { parseFormulaToTokens } from '../../shared/lib/formula';
+import { parseFormulaToTokens } from '../lib';
 import EditableMathField from './EditableMathField';
 import StaticMathField from './StaticMathField';
-import { useGetTableDataQuery } from '../../features/table/api';
+import { useGetTableDataQuery } from '../../table/api';
 
 const mathOperatorRegex = /[+\-*/^]/;
 
