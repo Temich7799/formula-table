@@ -51,8 +51,12 @@ const Table = (props: TableProps) => {
       columns={columns}
       pageSizeOptions={[5, 10, 25]}
       sx={{
-        '& .MuiDataGrid-cell--editing, .MuiAutocomplete-root': {
-          width: '100%'
+        '.MuiDataGrid-cell--editing': {
+          width: '70%'
+        },
+        '.MuiAutocomplete-root, .MuiAutocomplete-root .MuiFormControl-root, .MuiInputBase-root': {
+          width: '100%',
+          height: '100%'
         }
       }}
       {...props}

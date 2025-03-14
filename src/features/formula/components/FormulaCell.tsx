@@ -157,7 +157,7 @@ const FormulaCell: React.FC<FormulaCellProps> = ({ value, onChange }) => {
           return (
             <Chip
               {...chipProps}
-              key={option}
+              key={option + index}
               // label={isFormula ? <StaticMathField>{option}</StaticMathField> : option}
               label={option}
               sx={{
