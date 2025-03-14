@@ -8,9 +8,12 @@ interface EditableMathFieldProps {
 }
 
 const StyledMathFieldContainer = styled(Box)(({ theme }) => ({
-  width: '100%',
+  height: '100%',
   '& .mq-editable-field': {
-    minHeight: '36px',
+    textarea: {
+      width: '100%'
+    },
+    height: '100%',
     '&.mq-focused': {
       borderColor: theme.palette.primary.main,
       borderWidth: '2px',
@@ -23,11 +26,7 @@ const StyledMathFieldContainer = styled(Box)(({ theme }) => ({
   }
 }));
 
-const EditableMathField: React.FC<EditableMathFieldProps> = ({
-  value,
-  onChange,
-  placeholder = 'Enter formula'
-}) => {
+const EditableMathField: React.FC<EditableMathFieldProps> = ({ value, onChange }) => {
   const handleChange = (mathField: any) => {
     onChange(mathField.latex());
   };
@@ -39,12 +38,6 @@ const EditableMathField: React.FC<EditableMathFieldProps> = ({
           spaceBehavesLikeTab: true
         }}
         latex={value || ''}
-        mathquillDidMount={(mathField) => {
-          const element = mathField.el();
-          if (element) {
-            element.setAttribute('data-placeholder', placeholder);
-          }
-        }}
         onChange={handleChange}
       />
     </StyledMathFieldContainer>
