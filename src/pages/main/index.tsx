@@ -1,10 +1,18 @@
-import { DataGrid, GridColDef, useGridApiRef } from '@mui/x-data-grid';
+import { DataGrid, GridColDef, GridRenderEditCellParams, useGridApiRef } from '@mui/x-data-grid';
 import { useGetTableDataQuery } from '../../features/table/api';
 import FormulaCell from '../../entities/ui/FormulaCell';
 
 const MainPage = () => {
   const apiRef = useGridApiRef();
   const { data: rows = [], isLoading } = useGetTableDataQuery();
+
+  const handleFormulaChange = (params: GridRenderEditCellParams, newValue: string) => {
+    params.api.setEditCellValue({
+      id: params.id,
+      field: params.field,
+      value: newValue
+    });
+  };
 
   const columns: GridColDef[] = [
     { field: 'id', headerName: 'ID', width: 70 },
@@ -13,20 +21,17 @@ const MainPage = () => {
     {
       field: 'value',
       headerName: 'Input',
-      width: 130,
+      width: 200,
       editable: true,
-      renderCell: (params) => {
-        if (!params.value) return '-';
-        return params.value;
-      },
-      renderEditCell: (params) => (
-        <FormulaCell
-          value={params.value || ''}
-          onChange={(newValue) => {
-            params.api.setEditCellValue({ id: params.id, field: params.field, value: newValue });
-          }}
-        />
-      )
+      renderCell: (params) => params.value || '-',
+      renderEditCell: (params) => {
+        return (
+          <FormulaCell
+            value={String(params.value)}
+            onChange={(newValue) => handleFormulaChange(params, newValue)}
+          />
+        );
+      }
     },
     {
       field: 'inputs',
@@ -43,6 +48,11 @@ const MainPage = () => {
       loading={isLoading}
       pageSizeOptions={[5, 10, 25]}
       rows={rows}
+      sx={{
+        '& .MuiDataGrid-cell--editing, .MuiAutocomplete-root': {
+          width: '100%'
+        }
+      }}
     />
   );
 };
