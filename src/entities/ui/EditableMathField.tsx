@@ -12,13 +12,6 @@ const StyledMathFieldContainer = styled(Box)(({ theme }) => ({
   width: '100%',
   '& .mq-editable-field': {
     minHeight: '36px',
-    width: '100%',
-    padding: '5px 10px',
-    border: `1px solid ${theme.palette.divider}`,
-    borderRadius: '4px',
-    fontSize: '16px',
-    display: 'flex',
-    alignItems: 'center',
     '&.mq-focused': {
       borderColor: theme.palette.primary.main,
       borderWidth: '2px',
